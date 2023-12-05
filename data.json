@@ -1,0 +1,59 @@
+[{"name":"mer","email":"mm@gmail.com","username":"selmer"},{"name":"bbb","email":"bbb","username":"bbb"}]
+
+
+
+
+// const express = require("express");
+// const app = express();
+// const fs = require("fs");
+// const cors = require("cors");
+
+// app.use(express.json());
+// app.use(cors({ origin: "*" }));
+
+// app.use(async function (req, res, next) {
+//   let headers = req.headers;
+//   // console.log(headers);
+//   if (!headers.cookie) return next();
+//   let id = headers.cookie.split("=")[1];
+//   let decrypted = jwt.verify(id, "1234-secret");
+//   console.log("decrypted", decrypted);
+//   next();
+// });
+// // app.use((req, res, next) => {
+// //   console.log("rtrt");
+// //   next();
+// // });
+// app.get("/", (req, res) => {
+//   res.send("hi");
+// });
+
+// app.post("/contact", async (req, res) => {
+//   // const { name, email, username } = req.body;
+
+//   // await User.create({
+//   //   name,email,username
+    
+//   // })
+//   // res.redirect('/about')
+
+
+//   const body = req.body;
+//   let data = fs.readFileSync("./data.json");
+//   data = JSON.parse(data);
+//   const joinedData = [...data, body];
+//   fs.writeFileSync("./data.json", JSON.stringify(joinedData));
+//   res.json(body);
+// });
+
+// app.get("/contact", (req, res) => {
+//   let final = fs.readFileSync("./data.json");
+//   final = JSON.parse(final);
+//   console.log(final);
+//   res.json(final);
+// });
+
+// const port = 3001;
+// app.listen(port, () => {
+//   console.log("back end running" + port);
+// });
