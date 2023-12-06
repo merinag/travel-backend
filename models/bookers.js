@@ -7,7 +7,7 @@ const Booker = database.define("booker", {
   date: DataTypes.STRING,
   phoneNumber: DataTypes.STRING,
 
-  guest: DataTypes.STRING
+  guest: DataTypes.STRING,
   // bookingId:DataTypes.NUMBER,
   // userId:DataTypes.NUMBER
 });
