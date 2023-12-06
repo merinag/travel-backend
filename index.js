@@ -54,9 +54,6 @@ function authenticateUser(req, res, next) {
   const token = parts[1];
   try {
     const user = jwt.verify(token, secretKey);
-    console.log('::::::::::::::::::::');
-    console.log(user);
-    console.log('::::::::::::::::::::');
     req.user = user.dataValues;
     next();
   } catch (error) {
@@ -82,7 +79,6 @@ function authenticateUser(req, res, next) {
 
 app.get('/user', authenticateUser, async (req, res) => {
   res.json(req.user.username);
-
 });
 
 app.post('/contact-regi', async function (req, res) {
@@ -174,15 +170,12 @@ app.post('/appointments', authenticateUser, (req, res) => {
 app.get('/bookings', async (req, res) => {
 
   const result = await BookingModule.Bookings.findAll();
-  console.log('::::::::::::::::::::::::::::::');
-  console.log(result);
-  console.log('::::::::::::::::::::::::::::::');
   res.send(result);
 });
 
 
 
-app.get('/book', async (req, res) => {
+app.get('/book',authenticateUser , async (req, res) => {
   try {
     let books = await Booker.findAll({
       order: [['createdAt', 'desc']],
@@ -208,6 +201,10 @@ app.get('/book', async (req, res) => {
   }
 });
 
+app.get('/app_user' , async(req,res)=>{
+  data = User.findAll()
+  res.send(data)
+})
 
 app.post('/book', authenticateUser, async (req, res) => {
   const body = req.body;
@@ -220,7 +217,8 @@ app.post('/book', authenticateUser, async (req, res) => {
       phoneNumber: body.phone,
       guest: body.guest,
       bookingId: parseInt(body.bookingId),
-      id: req.user.id,
+      userId: 1,
+      // id:id.toString(),
     };
 
     Booker.create(data);
